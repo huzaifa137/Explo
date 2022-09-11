@@ -57,18 +57,7 @@
                   <a class="dropdown-item" href="#">
                     <i class="mdi mdi-file-word mr-2"></i>doc </a>
                 </div>
-              </li>
-              <li class="nav-item  dropdown d-none d-md-block">
-                <a class="nav-link dropdown-toggle" id="projectDropdown" href="#" data-toggle="dropdown" aria-expanded="false"> Tasks </a>
-                <div class="dropdown-menu navbar-dropdown" aria-labelledby="projectDropdown">
-                  <a class="dropdown-item" href="#">
-                    <i class="mdi mdi-eye-outline mr-2"></i>View Tasks </a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">
-                    <i class="mdi mdi-pencil-outline mr-2"></i>Edit Tasks </a>
-                </div>
-              </li>
-             
+              </li>       
               <li class="nav-item nav-profile dropdown">
                 <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                   <div class="nav-profile-img">
@@ -83,12 +72,8 @@
                     <img class="img-avatar img-avatar48 img-avatar-thumb" src="/assets2/images/faces/face28.png" alt="">
                   </div>
                   <div class="p-2">
-                    <h5 class="dropdown-header text-uppercase pl-2 text-dark">User Options</h5>
+                    <h5 class="dropdown-header text-uppercase pl-2 text-dark">Client Options</h5>
                     <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="#">
-                      <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                        <span>Settings</span>
-                        <i class="mdi mdi-settings"></i>
-                      </a>
                     <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="{{route('auth.logout')}}">
                       <span>Log Out</span>
                       <i class="mdi mdi-logout ml-1"></i>
@@ -133,7 +118,7 @@
           <footer class="footer">
             <div class="footer-inner-wraper">
               <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
+                <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © codeeagles.com 2020</span>
                 <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap dashboard templates</a> from Bootstrapdash.com</span>
               </div>
             </div>

@@ -31,23 +31,23 @@
                             <div class="mb-3 col-md-6">
                                 <label>Agent Name<span class="text-danger">*</span></label>
                                 <select class="form-select" aria-label="Default select example" name="agent_name">
-                                    <option >Select Agent Name</option>
+                                    <option value="">Select Agent Name</option>
                                     @foreach ($agent_info as $info)
                                     <option value="{{$info->id}}">{{$data=$info->fname}}</option>
                                     @endforeach
                                   </select>
-                                <span class="text-danger">@error('agent_name'){{$message}}@enderror</span>
+                                  <span class="text-danger">@error('agent_name'){{$message}}@enderror</span>
                             </div>
                             
                              <div class="mb-3 col-md-6">
                                 <label>Task Name<span class="text-danger">*</span></label>
                                 <select class="form-select" aria-label="Default select example" name="task_name">
-                                    <option >Select Task Name</option>
+                                    <option value=" ">Select Task Name</option>
                                     @foreach ($task_info as $info)
                                     <option value="{{$info->id}}">{{$info->name}}</option>
                                     @endforeach
                                   </select>
-                                <span class="text-danger">@error('taskname'){{$message}}@enderror</span>
+                                <span class="text-danger">@error('task_name'){{$message}}@enderror</span>
                             </div>
                             
                             <div class="mb-3 col-md-6">

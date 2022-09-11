@@ -37,10 +37,18 @@ class AgentAccess extends Controller
             'email'=>'required|unique:agentregisters',
             'phonenumber'=>'required|min:10|max:10',
             'password'=>'required|min:5|max:12',
+            'confirm_password'=>'required|min:5|max:12',
             'profile_photo'=>'required|mimes:jpg,jpeg,png,bmp',
             'National_id'=>'required|mimes:jpg,jpeg,png,bmp'
         ]);
         
+        $password1=$request->input('password');
+        $password2=$request->input('confirm_password');
+
+        if(strcmp($password1,$password2)!=0)
+        {
+            return back()->with('fail','Passwords entered dont much');
+        }
 
         if($request->file('profile_photo'))
         {
@@ -102,7 +110,7 @@ class AgentAccess extends Controller
                     }
             else     
                 {
-                return back()->with('fail','incorrect password'); 
+                return back()->with('fail','Invalid email or password'); 
                 }
         }
 
@@ -117,7 +125,7 @@ class AgentAccess extends Controller
 
         if(!$userInfo)
         {
-            return back()->with('fail','Email not registered');
+            return back()->with('fail','Invalid email or password');
         }
 
         else

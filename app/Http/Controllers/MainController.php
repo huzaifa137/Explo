@@ -27,9 +27,17 @@ class MainController extends Controller
             'fname'=>'required',
             'email'=>'required|unique:Admins',
             'phonenumber'=>'required|min:10|max:10',
-            'password'=>'required|min:5|max:12'
+            'password'=>'required|min:5|max:12',
+            'confirm_password'=>'required|min:5|max:12'
         ]);
 
+        $password1=$request->input('password');
+        $password2=$request->input('confirm_password');
+
+        if(strcmp($password1,$password2)!=0)
+        {
+            return back()->with('fail','Password entered dont much');
+        }
         $Admin = new Admin();
         $Admin->name = $request->input('fname');
         $Admin->email = $request->input('email');
@@ -66,7 +74,7 @@ class MainController extends Controller
                     }
             else     
                 {
-                return back()->with('fail','incorrect password'); 
+                return back()->with('fail','incorrect email or password'); 
                 }
         }
 
@@ -81,7 +89,7 @@ class MainController extends Controller
 
         if(!$userInfo)
         {
-            return back()->with('fail','Email not registered');
+            return back()->with('fail','incorrect email or password');
         }
 
         else

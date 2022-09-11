@@ -131,7 +131,7 @@
 
     <div class="container mt-4">
       <div class="copyright">
-        &copy; Copyright <strong><span>Logis</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>CodeEagles</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->

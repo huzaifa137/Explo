@@ -111,6 +111,12 @@
                                 <input type="password" name="password" class="form-control" placeholder="Enter Password">
                                 <span class="text-danger">@error('password'){{$message}}@enderror</span>
                             </div>
+
+                            <div class="mb-3 col-md-12">
+                                <label>Confirm Password<span class="text-danger">*</span></label>
+                                <input type="password" name="confirm_password" class="form-control" placeholder="Enter confirm Password">
+                                <span class="text-danger">@error('confirm_password'){{$message}}@enderror</span>
+                            </div>
                             <div class="col-md-12">
                                <button class="btn btn-primary float-end">Signup Now</button>
                             </div>

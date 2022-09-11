@@ -23,6 +23,7 @@ class CreateAssignedTasksTable extends Migration
             $table->text('email');
             $table->text('status')->default('assigned');
             $table->integer('AgentId');
+            $table->integer('TaskId')->default(0);
             $table->timestamps();
         });
     }

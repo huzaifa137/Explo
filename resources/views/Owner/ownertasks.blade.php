@@ -48,7 +48,7 @@
                     <td> {{$info->extraservices}} </td>
                     <td><a class="btn btn-success" href="{{'owner.taskinfo/'.$info->id}}"> View</a></td>
                     <td><a class="btn btn-primary" href="{{'owner.taskedit/'.$info->id}}"> Edit</a></td>
-                    <td><a class="btn btn-danger" href="{{'delete-task/'.$info->id}}">Delete</a></td>
+                    <td><a class="btn btn-danger" href="{{'task-delete/'.$info->id}}">Delete</a></td>
                   </tr>
                   @endforeach
                 </tbody>

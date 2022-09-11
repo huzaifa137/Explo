@@ -45,7 +45,7 @@
                     <td> <img src="{{ url('public/agent_national_id_pic/'.$info->national_id) }}" alt="image"> </td>
                     <td> {{$info->email}} </td>
                     <td> {{$info->phonenumber}} </td>
-                    <td> <span style="color: red">{{$info->status}} </span></td>
+                    <td> <a class="btn btn-warning">{{$info->status}} </a></td>
                     <td><a class="btn btn-success" href="{{'owner.agent-view/'.$info->id}}"> view</a></td>
                     <td><a class="btn btn-primary" href="{{'owner.agent-edit/'.$info->id}}"> Edit</a></td>
                     <td><a class="btn btn-danger" href="{{'owner.agent-delete/'.$info->id}}">Delete</a></td>

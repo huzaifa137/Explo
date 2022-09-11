@@ -60,8 +60,27 @@ class OwnerController extends Controller
 
     public function TaskInfo($id)
     {
-       return $data = addtask::find($id);
+        $data=['Loggedowner'=>owner::where('id','=',session('Loggedowner'))->first()];
+        $Task_info = addtask::find($id);
+
+        return view('owner.TaskInfo',$data)->with('Task_info',$Task_info);
     }
+
+    public function submitTask($id)
+    {
+        $info_data = assignedTask::find($id);
+
+         $updates = DB::select('select TaskId from assigned_tasks where TaskId = ?',[$info_data->TaskId]);
+
+         foreach ($updates as $key) {
+            $data=$key->TaskId;
+         }
+
+         $save=addtask::where('id',$data)->update(['status'=>'completed']);
+         $save1=assignedTask::where('Taskid',$data)->update(['status'=>'completed']);
+         
+         return Redirect()->route('Admin.AgentDashboard');
+    }   
 
     public function TaskEdit($id)
     {
@@ -115,6 +134,16 @@ class OwnerController extends Controller
     }
 
     //Owner dashboard ----> Agent Table
+
+    public function agent_assigned_details($id)
+    {
+        $data=['Loggedowner'=>owner::where('id','=',session('Loggedowner'))->first()];
+        $Task_info = assignedTask::find($id);
+
+         return view('owner.agent_assigned_details',$data)->with('Task_info',$Task_info);
+    }
+
+
     public function delete_agent($id)
     {
         $agent_data = agentregister::find($id);
@@ -169,8 +198,10 @@ class OwnerController extends Controller
 
     public function view_agent($id)
     {
+        $data=['Loggedowner'=>owner::where('id','=',session('Loggedowner'))->first()];
         $agent_data =agentregister::find($id);
-        return $agent_data;
+
+        return view('Owner.view_agent_details',$data)->with('agent_data',$agent_data);
     }
 
     /* Owner dashboard--> Client Table */
@@ -203,8 +234,8 @@ class OwnerController extends Controller
 
     public function delete_client($id)
     {
-        $delete_client = Admin::find($id);
-        $delete_client->delete();
+        $data = Admin::find($id);
+        $data->delete();
 
         return redirect()->back()->with('Deleted','The Client has been deleted Successfully');
     }
@@ -217,6 +248,14 @@ class OwnerController extends Controller
         $info = DB::select('select * from admins where status = ? ',['invalid']);
 
         return view('owner.clientnotactivated',$data)->with('infodata',$info);
+    }
+
+    public function delete_unactive($id)
+    {
+        $data = Admin::find($id);
+        $data->delete();
+        
+        return redirect()->back()->with('deleted','Client has been deleted successfully');
     }
 
     public function agent_unactivated()
@@ -281,7 +320,7 @@ class OwnerController extends Controller
                     }
             else     
                 {
-                return back()->with('fail','incorrect password'); 
+                return back()->with('fail','invalid email or password'); 
                 }   
     }
 
@@ -296,7 +335,7 @@ class OwnerController extends Controller
 
         if(!$userInfo)
         {
-            return back()->with('fail','Email not registered');
+            return back()->with('fail','invalid email or password');
         }
 
         else
@@ -338,19 +377,54 @@ class OwnerController extends Controller
     public function agent_assign_task(Request $request)
     {
         $info= session()->get('LoggedUser1',$request->agent_name);
+
         $data=['LoggedUser1'=>agentregister::where('id','=',session('LoggedUser1'))->first()];
-        $info_data = DB::select('select * from assigned_tasks where AgentId = ?',[$info]);
+
+        $info_data=assignedTask::where([
+            'AgentId'=> $info,
+            'status'=>'assigned'
+        ])->get();
+
 
         return view('Owner.AllTasks',$data)->with('info_data',$info_data);
+    }
+
+
+    public function agent_completed_task(Request $request)
+    {
+        $info= session()->get('LoggedUser1',$request->agent_name);
+
+        $data=['LoggedUser1'=>agentregister::where('id','=',session('LoggedUser1'))->first()];
+
+        $info_data=assignedTask::where([
+            'AgentId'=> $info,
+            'status'=>'completed'
+        ])->get();
+
+
+        return view('Owner.completed',$data)->with('info_data',$info_data);
+    }
+
+    public function Taskdelete($id)
+    {
+        $data= addtask::find($id);
+        $data->delete();
+
+        return redirect()->back()->with('success','Task has been deleted successfully');
     }
 
     public function agent_details()
     {   
         $data=['Loggedowner'=>owner::where('id','=',session('Loggedowner'))->first()];
-        $info_data = assignedTask::all();
+        $info_data=DB::select('select * from assigned_tasks where status = ?',['assigned']);
 
         return view('Owner.assignedTasks',$data)->with('info_data',$info_data);
     }
+
+    // public function view_assigned_tasks($id)
+    // {
+    //     return assignedTask::find($id);
+    // }
 
     public function Task_assigned(Request $request)
     {
@@ -365,7 +439,12 @@ class OwnerController extends Controller
         $agentemail = DB::select('select email from agentregisters where id = ?',[$request->agent_name]);
         $AgentDistrict = DB::select('select district from agentregisters where id = ?',[$request->agent_name]);
         $taskname = DB::select('select name from addtasks where id = ?',[$request->task_name]);
+        $taskid = DB::select('select id from addtasks where id = ?',[$request->task_name]);
         $Agentname = DB::select('select id from agentregisters where id = ?',[$request->agent_name]);
+
+        foreach ($taskid as $keys) {
+            $task_id=$keys->id;
+        }
 
         foreach ($Agentname as $keys) {
             $Agentid=$keys->id;
@@ -395,18 +474,20 @@ class OwnerController extends Controller
         $assign->startdate = $request->input('start_date');
         $assign->Submission_date = $request->input('submission_date');
         $assign->AgentId=$Agentid;
+        $assign->TaskId=$task_id;
         $save = $assign->save();
         
         $this->updateTasksTable($request);
 
         if($save)
         {
-            echo "The data has been saved !!!";
+            return redirect()->back()->with('success','Task has been assigned Successfully');
 
         }
         else
         {
-            echo "Data has not been inserted !!";
+            return redirect()->back()->with('fail','Task has not been assigned !!!');
+    
         }
 
     }

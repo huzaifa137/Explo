@@ -54,7 +54,8 @@
                             <div class="mb-3 col-md-12">
                                 <label>Confirm Password<span class="text-danger">*</span></label>
                                 <input type="password" name="confirm_password" class="form-control" placeholder="Enter Password">
-                            </div>
+                               <span style="color: red">@error('confirm_password'){{$message}}@enderror</span> 
+                             </div>
 
                             <div class="col-md-12">
                                <button class="btn btn-primary float-end">Signup Now</button>

@@ -69,11 +69,12 @@ Route::get('auth.agent-logout',[AgentAccess::class,'agent_logout'])->name('auth.
 
 
 Route::group(['middleware'=>'AgentAuthCheck'],function (){
-    Route::get('Admin.AgentDashboard',[AgentAccess::class,'agent_dashboard']);
+    Route::get('Admin.AgentDashboard',[AgentAccess::class,'agent_dashboard'])->name('Admin.AgentDashboard');
     Route::get('auth.agent-login',[AgentAccess::class,'agentlogin'])->name('auth.agent-login');
     Route::get('auth.agent-register',[AgentAccess::class,'agentregister'])->name('auth.agent-register');
     Route::get('Agent.information',[MainController::class,'Agentinformation']);
     Route::get('All-assigned-Tasks',[OwnerController::class,'agent_assign_task'])->name('All-assigned-Tasks');
+    Route::get('All-completed-Tasks',[OwnerController::class,'agent_completed_task'])->name('All-completed-Tasks');
 });
 
 
@@ -94,9 +95,16 @@ Route::group(['middleware'=>'OwnerCheck'],function (){
     Route::get('owner.client-info',[OwnerController::class,'clients_info'])->name('owner.client-info');
     Route::get('owner.agent-info',[OwnerController::class,'agents_info'])->name('owner.agent-info');
     Route::get('owner.task-info',[OwnerController::class,'tasks_info'])->name('owner.task-info');
+    Route::get('task-delete/{id}',[OwnerController::class,'Taskdelete']);
+    Route::get('owner.clientEdit/{id}',[OwnerController::class,'edit_client']);
+    Route::get('owner.delete_unactive/{id}',[OwnerController::class,'delete_unactive']);    
+    Route::get('owner.unactivated-clients',[OwnerController::class,'client_unactivated'])->name('owner.unactivated-clients');
+    Route::get('owner.unactivated-agents',[OwnerController::class,'agent_unactivated'])->name('owner.unactivated-agents');
+
 });
 
 Route::get('owner.taskinfo/{id}',[OwnerController::class,'TaskInfo']);
+Route::get('owner.submit/{id}',[OwnerController::class,'submitTask']);
 Route::get('owner.taskdelete/{id}',[OwnerController::class,'deleteTask']);
 Route::get('owner.taskedit/{id}',[OwnerController::class,'TaskEdit']);
 Route::post('task-update',[OwnerController::class,'updateTask'])->name('task-update');
@@ -107,16 +115,7 @@ Route::get('owner.agent-edit/{id}',[OwnerController::class,'edit_agent']);
 Route::get('owner.agent-view/{id}',[OwnerController::class,'view_agent']);
 Route::post('owner-save',[OwnerController::class,'auth_owner_save'])->name('owner-save');
 
-
-Route::get('owner.clientEdit/{id}',[OwnerController::class,'edit_client']);
-Route::get('owner.clientDelete/{id}',[OwnerController::class,'delete_client']);
 Route::post('owner-client-save',[OwnerController::class,'owner_client_insert'])->name('owner-client-save');
-
-
-
-
-Route::get('owner.unactivated-clients',[OwnerController::class,'client_unactivated'])->name('owner.unactivated-clients');
-Route::get('owner.unactivated-agents',[OwnerController::class,'agent_unactivated'])->name('owner.unactivated-agents');
 
 
 Route::get('owner.TaskInfo',[OwnerController::class,'ownerTaskInfo'])->name('owner.TaskInfo');
@@ -124,8 +123,9 @@ Route::get('owner.TaskInfo',[OwnerController::class,'ownerTaskInfo'])->name('own
 
 // -------------------------------------------------------------------------------------
 
-Route::get('assign-task',[OwnerController::class,'assign_task']);
+Route::get('assign-task',[OwnerController::class,'assign_task'])->name('assign.task');
 Route::post('final-assign',[OwnerController::class,'Task_assigned'])->name('final-assign');
 
-
+Route::get('agent-assigned-details/{id}',[OwnerController::class,'agent_assigned_details']);
 Route::get('owner-assigned-tasks',[OwnerController::class,'agent_details'])->name('owner-assigned-tasks');
+

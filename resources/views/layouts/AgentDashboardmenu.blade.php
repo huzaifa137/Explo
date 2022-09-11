@@ -73,12 +73,7 @@
                     <img class="img-avatar img-avatar48 img-avatar-thumb" src="{{ url('public/agent_profile_pic/'.$LoggedUser1->profile_photo) }}" alt="">
                   </div>
                   <div class="p-2">
-                    <h5 class="dropdown-header text-uppercase pl-2 text-dark">User Options</h5>
-                    <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="#">
-                      <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                        <span>Settings</span>
-                        <i class="mdi mdi-settings"></i>
-                      </a>
+                    <h5 class="dropdown-header text-uppercase pl-2 text-dark">Agent Options</h5>
                     <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="auth.agent-logout">
                       <span>Log Out</span>
                       <i class="mdi mdi-logout ml-1"></i>
@@ -114,7 +109,7 @@
                 <div class="collapse" id="ui-basic">
                   <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{{route('All-assigned-Tasks')}}">Assigned Tasks</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="#">Completed Tasks</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{route('All-completed-Tasks')}}">Completed Tasks</a></li>
                   </ul>
                 </div>
               </li>
@@ -124,7 +119,7 @@
           <footer class="footer">
             <div class="footer-inner-wraper">
               <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
+                <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © codeeagles.com 2022</span>
                 <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap dashboard templates</a> from Bootstrapdash.com</span>
               </div>
             </div>

@@ -3,7 +3,7 @@
 <div class="main-panel">
     <div class="content-wrapper">
       <div class="page-header">
-        <h3 class="page-title"> Assigned Tasks</h3>
+        <h3 class="page-title"> Completed Tasks</h3>
       </div>
 
       <script>
@@ -19,7 +19,7 @@
         <div class="col-lg-12 stretch-card">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">Assigned Tasks Information</h4>
+              <h4 class="card-title">Completed Tasks Information</h4>
               <table class="table table-bordered">
                 <thead>
                   <tr>
@@ -31,7 +31,6 @@
                     <th>Email</th>
                     <th>Status</th>
                     <th>View</th>
-                    <th>Submit</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -45,9 +44,8 @@
                     <td> {{$info->startdate}} </td>
                     <td> {{$info->Submission_date}} </td>
                     <td> {{$info->email}} </td>
-                    <td><a class="btn btn-danger btn-fw">{{$info->status}}</a></td>
+                    <td><a class="btn btn-success btn-fw">{{$info->status}}</a></td>
                     <td><a class="btn btn-primary" href="{{'agent-assigned-details/'.$info->id}}"> View</a></td>
-                    <td><a class="btn btn-dark" href="{{'owner.submit/'.$info->id}}"> Submit</a></td>
                   </tr>
                   @endforeach
 
