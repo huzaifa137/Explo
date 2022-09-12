@@ -1,4 +1,4 @@
-@extends('layouts.AgentDashboardmenu')
+@extends('Owner.OwnerDashboardMenu')
 @section('content')
 <div class="main-panel">
     <div class="content-wrapper">
@@ -35,10 +35,6 @@
           </tr>
           </thead>
         </table>
-        <br>  <br>
-        <tr>
-          <span style="font-weight:bold;color:black;">questionnaire</span>  <span style="color: black;"> :  {{$Task_info->questionnaire}}</span>
-        </tr>  
       </div>
     </div>
   </div>

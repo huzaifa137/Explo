@@ -27,8 +27,8 @@
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
           <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo" href="owner.dashboard"><img src="/assets2/images/logo.svg" alt="logo" /></a>
-            <a class="navbar-brand brand-logo-mini" href="owner.dashboard"><img src="/assets2/images/logo-mini.svg" alt="logo" /></a>
+            <a class="navbar-brand brand-logo" href="{{route('owner.dashboard')}}"><img src="/assets2/images/logo.svg" alt="logo" /></a>
+            <a class="navbar-brand brand-logo-mini" href="{{route('owner.dashboard')}}"><img src="/assets2/images/logo-mini.svg" alt="logo" /></a>
           </div>
           <div class="navbar-menu-wrapper d-flex align-items-stretch">
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -45,7 +45,7 @@
               </form>
             </div>
             <ul class="navbar-nav navbar-nav-right">
-              <li class="nav-item  dropdown d-none d-md-block">
+              {{-- <li class="nav-item  dropdown d-none d-md-block">
                 <a class="nav-link dropdown-toggle" id="reportDropdown" href="#" data-toggle="dropdown" aria-expanded="false"> Reports </a>
                 <div class="dropdown-menu navbar-dropdown" aria-labelledby="reportDropdown">
                   <a class="dropdown-item" href="#">
@@ -57,7 +57,7 @@
                   <a class="dropdown-item" href="#">
                     <i class="mdi mdi-file-word mr-2"></i>doc </a>
                 </div>
-              </li>
+              </li> --}}
              
               <li class="nav-item nav-profile dropdown">
                 <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
@@ -76,7 +76,7 @@
                   </div>
                   <div class="p-2">
                     <h5 class="dropdown-header text-uppercase pl-2 text-dark">Admin Options</h5>
-                    <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="owner.logout">
+                    <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="{{route('owner.logout')}}">
                       <span>Log Out</span>
                       <i class="mdi mdi-logout ml-1"></i>
                     </a>
@@ -97,7 +97,7 @@
             <ul class="nav">
               <li class="nav-item nav-category">Main</li>
               <li class="nav-item">
-                <a class="nav-link" href="owner.dashboard">
+                <a class="nav-link" href="{{route('owner.dashboard')}}">
                   <span class="icon-bg"><i class="mdi mdi-cube menu-icon"></i></span>
                   <span class="menu-title">Dashboard</span>
                 </a>
@@ -112,7 +112,7 @@
                 <div class="collapse" id="ui-basic">
                   <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{{route('assign.task')}}">Assign a Task</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="#">Generate a report</a></li>
+                    {{-- <li class="nav-item"> <a class="nav-link" href="#">Generate a report</a></li> --}}
                     <li class="nav-item"> <a class="nav-link" href="{{route('owner.unactivated-clients')}}">UnActivated Clients</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{route('owner.unactivated-agents')}}">UnActivated Agents</a></li>
                   </ul>
@@ -140,7 +140,7 @@
           <footer class="footer">
             <div class="footer-inner-wraper">
               <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © codeeagles.com 2020</span>
+                <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © codeeagles.com 2022</span>
                 <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap dashboard templates</a> from Bootstrapdash.com</span>
               </div>
             </div>

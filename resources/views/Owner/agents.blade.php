@@ -48,9 +48,9 @@
                     <td> <a class="btn btn-success">{{$info->status}}</a></td>
                     <td><a class="btn btn-dark" href="{{'owner.agent-view/'.$info->id}}"> view</a></td>
                     <td><a class="btn btn-primary" href="{{'owner.agent-edit/'.$info->id}}"> Edit</a></td>
-                    <td><a class="btn btn-danger" href="{{'owner.agent-delete/'.$info->id}}">Delete</a></td>
+                    <td><a class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this Agent ?')" href="{{'owner.agent-delete/'.$info->id}}">Delete</i></a></td>
                   </tr>
-                  {{-- <td><a class="btn btn-danger btn-fw">{{$info->status}}</a></td> --}}
+                  
                   @endforeach
                 </tbody>
               </table>

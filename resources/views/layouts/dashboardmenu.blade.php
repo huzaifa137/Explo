@@ -45,7 +45,7 @@
               </form>
             </div>
             <ul class="navbar-nav navbar-nav-right">
-              <li class="nav-item  dropdown d-none d-md-block">
+              {{-- <li class="nav-item  dropdown d-none d-md-block">
                 <a class="nav-link dropdown-toggle" id="reportDropdown" href="#" data-toggle="dropdown" aria-expanded="false"> Reports </a>
                 <div class="dropdown-menu navbar-dropdown" aria-labelledby="reportDropdown">
                   <a class="dropdown-item" href="#">
@@ -57,7 +57,7 @@
                   <a class="dropdown-item" href="#">
                     <i class="mdi mdi-file-word mr-2"></i>doc </a>
                 </div>
-              </li>       
+              </li>        --}}
               <li class="nav-item nav-profile dropdown">
                 <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                   <div class="nav-profile-img">
@@ -118,8 +118,7 @@
           <footer class="footer">
             <div class="footer-inner-wraper">
               <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © codeeagles.com 2020</span>
-                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap dashboard templates</a> from Bootstrapdash.com</span>
+                <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © codeeagles.com 2022</span>
               </div>
             </div>
           </footer>

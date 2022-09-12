@@ -23,7 +23,6 @@
               <table class="table table-bordered">
                 <thead>
                   <tr>
-                    <th>Id</th>
                     <th>Agent Name </th>
                     <th>Task Name </th>
                     <th>Start date </th>
@@ -39,7 +38,6 @@
                   @foreach ($info_data as $info)
 
                   <tr class="table-info">
-                    <td> {{$info->id}} </td>
                     <td> {{$info->AgentName}} </td>  
                     <td> {{$info->TaskName}} </td>
                     <td> {{$info->startdate}} </td>

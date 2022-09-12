@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\agentregister;
 use Illuminate\Support\Facades\DB;
+use App\Models\assignedTask;
 
 class AgentAccess extends Controller
 {
@@ -146,7 +147,39 @@ class AgentAccess extends Controller
     public function agent_dashboard()
     {
         $data=['LoggedUser1'=>agentregister::where('id','=',session('LoggedUser1'))->first()];
-        return view('Admin.AgentDashboard',$data);
+
+        $data=['LoggedUser1'=>agentregister::where('id','=',session('LoggedUser1'))->first()];
+            foreach ($data as $key ) {
+                $info=$key->id;
+            }
+
+            $info_data=assignedTask::where([
+                'AgentId'=> $info,
+                'status'=>'assigned'
+            ])->get();
+    
+            $info_data_complete=assignedTask::where([
+                'AgentId'=> $info,
+                'status'=>'completed'
+            ])->get();
+
+            $assigned_task =$info_data->count();
+            $completed_task =$info_data_complete->count();
+
+            // $infodata=addtask::all()->where('AdminId','=',$info);
+            // $info=$infodata->count
+        
+        return view('Admin.AgentDashboard',$data)
+        ->with('assigned_task',$assigned_task)
+        ->with('completed_task',$completed_task);
+    }
+
+    public function agent_assigned_details($id)
+    {
+        $data=['LoggedUser1'=>agentregister::where('id','=',session('LoggedUser1'))->first()];
+        $Task_info = assignedTask::find($id);
+        
+         return view('owner.agent_assigned_details',$data)->with('Task_info',$Task_info);
     }
 
     public function Agentinformation()

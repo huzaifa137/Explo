@@ -45,7 +45,7 @@
                     <td> {{$info->Submission_date}} </td>
                     <td> {{$info->email}} </td>
                     <td><a class="btn btn-success btn-fw">{{$info->status}}</a></td>
-                    <td><a class="btn btn-primary" href="{{'agent-assigned-details/'.$info->id}}"> View</a></td>
+                    <td><a class="btn btn-primary" href="{{'agent-assigned-records/'.$info->id}}"> View</a></td>
                   </tr>
                   @endforeach
 

@@ -21,7 +21,7 @@
                   <div class="card-body">
                     <h4 class="card-title">Enter Task details</h4>
                     <p class="card-description"> Basic form elements </p>
-                    <form class="forms-sample" method="POST" action="{{route('task-update')}}">
+                    <form class="forms-sample" method="POST" action="{{route('task-updatedd')}}">
                       @csrf
                       <input type="hidden" name="id" value="{{$save->id}}">
                       <div class="form-group">

@@ -23,7 +23,6 @@
                     <table class="table table-bordered">
                       <thead>
                         <tr>
-                          <th> Id </th>
                           <th>Task Name </th>
                           <th> Agency </th>
                           <th> Area </th>
@@ -38,7 +37,6 @@
 
                         @foreach ($infodata as $info)
                         <tr class="table-info">
-                          <td> {{$info->id}}</td>
                           <td> {{$info->name}} </td>
                           <td> {{$info->agency}}</td>
                           <td> {{$info->area}} </td>
@@ -46,7 +44,7 @@
                           <td> {{$info->BusinessType}} </td>
                           <td> {{$info->extraservices}} </td>
                           <td><a class="btn btn-primary" href="{{'edit-task/'.$info->id}}"> Edit</a></td>
-                          <td><a class="btn btn-danger" href="{{'delete-task/'.$info->id}}">Delete</a></td>
+                        <td><a class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this Task ?')" href="{{'delete-task/'.$info->id}}">Delete</i></a></td>
                         </tr>
                         @endforeach
                       </tbody>

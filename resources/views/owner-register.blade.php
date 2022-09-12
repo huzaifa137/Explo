@@ -29,7 +29,7 @@
 
                         <div class="row">
                             <div class="mb-3 col-md-12">
-                                <label>Business Name<span class="text-danger">*</span></label>
+                                <label>Admin Name<span class="text-danger">*</span></label>
                                 <input type="text" name="fname" class="form-control" placeholder="Enter Business Name" value="{{old('fname')}}">
                                 <span class="text-danger">@error('fname'){{$message}}@enderror</span>
                             </div>

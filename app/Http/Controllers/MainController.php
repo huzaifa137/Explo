@@ -112,8 +112,18 @@ class MainController extends Controller
 
         public function dashboard()
         {
+            // $data=['LoggedUser'=>Admin::where('id','=',session('LoggedUser'))->first()];
+
             $data=['LoggedUser'=>Admin::where('id','=',session('LoggedUser'))->first()];
-            return view('Admin.login_dashboard',$data);
+            foreach ($data as $key ) {
+                $info=$key->id;
+            }
+
+            $infodata=addtask::all()->where('AdminId','=',$info);
+            $info=$infodata->count();
+            
+            return view('Admin.login_dashboard',$data)->with('info',$info);
+
         }
 
         //LoggedIn Admin Pages
@@ -149,7 +159,8 @@ class MainController extends Controller
             'district'=>'required',
             'date'=>'required',
             'BusinessType'=>'required',
-            'extraservices'=>'required'
+            'extraservices'=>'required',
+            'questionnaire'=>'required'
         ]);  
 
         $addtask = new addtask(); 
@@ -158,6 +169,7 @@ class MainController extends Controller
         $addtask->area = $request->area;
         $addtask->district = $request->district;
         $addtask->date = $request->date;
+        $addtask->questionnaire=$request->questionnaire;
         $addtask->BusinessType = $request->BusinessType;
         $addtask->AdminId= $info;
         $addtask->extraservices = $request->extraservices;

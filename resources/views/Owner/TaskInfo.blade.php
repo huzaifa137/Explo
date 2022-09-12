@@ -19,7 +19,6 @@
         <div class="col-lg-12 stretch-card">
           <div class="card">
             <div class="card-body">
-
               <table class="table">
                 <thead>
                 <tr>
@@ -37,9 +36,13 @@
                   <tr>
                     <td><span style="font-weight:bold">Extra Servicves</span>   :  {{$Task_info->extraservices}} </td>
                     <td><span style="font-weight:bold">Status</span>              :  {{$Task_info->status}} </td>
-                </tr>
+                  </tr>        
                 </thead>
               </table>
+              <br>  <br>
+              <tr>
+                <span style="font-weight:bold;color:black;">questionnaire</span>  <span style="color: black;"> :  {{$Task_info->questionnaire}}</span>
+              </tr>  
             </div>
           </div>
         </div>

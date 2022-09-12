@@ -75,6 +75,7 @@ Route::group(['middleware'=>'AgentAuthCheck'],function (){
     Route::get('Agent.information',[MainController::class,'Agentinformation']);
     Route::get('All-assigned-Tasks',[OwnerController::class,'agent_assign_task'])->name('All-assigned-Tasks');
     Route::get('All-completed-Tasks',[OwnerController::class,'agent_completed_task'])->name('All-completed-Tasks');
+    Route::get('agent-assigned-details/{id}',[AgentAccess::class,'agent_assigned_details']);
 });
 
 
@@ -100,14 +101,14 @@ Route::group(['middleware'=>'OwnerCheck'],function (){
     Route::get('owner.delete_unactive/{id}',[OwnerController::class,'delete_unactive']);    
     Route::get('owner.unactivated-clients',[OwnerController::class,'client_unactivated'])->name('owner.unactivated-clients');
     Route::get('owner.unactivated-agents',[OwnerController::class,'agent_unactivated'])->name('owner.unactivated-agents');
-
+    Route::get('owner.taskinfo/{id}',[OwnerController::class,'TaskInfo']);
 });
 
-Route::get('owner.taskinfo/{id}',[OwnerController::class,'TaskInfo']);
+Route::get('agent-assigned-records/{id}',[OwnerController::class,'agent_assigned_records']);
 Route::get('owner.submit/{id}',[OwnerController::class,'submitTask']);
 Route::get('owner.taskdelete/{id}',[OwnerController::class,'deleteTask']);
-Route::get('owner.taskedit/{id}',[OwnerController::class,'TaskEdit']);
-Route::post('task-update',[OwnerController::class,'updateTask'])->name('task-update');
+Route::get('owner.taskedit/{id}',[OwnerController::class,'ownerTaskEdit']);
+Route::post('task-update',[OwnerController::class,'updateTask'])->name('task-updatedd');
 
 
 Route::get('owner.agent-delete/{id}',[OwnerController::class,'delete_agent']);
@@ -126,6 +127,6 @@ Route::get('owner.TaskInfo',[OwnerController::class,'ownerTaskInfo'])->name('own
 Route::get('assign-task',[OwnerController::class,'assign_task'])->name('assign.task');
 Route::post('final-assign',[OwnerController::class,'Task_assigned'])->name('final-assign');
 
-Route::get('agent-assigned-details/{id}',[OwnerController::class,'agent_assigned_details']);
+// Route::get('agent-assigned-details/{id}',[OwnerController::class,'agent_assigned_details']);
 Route::get('owner-assigned-tasks',[OwnerController::class,'agent_details'])->name('owner-assigned-tasks');
 

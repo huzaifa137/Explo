@@ -40,7 +40,7 @@
                     <td> {{$info->phonenumber}} </td>
                     <td> <a class="btn btn-warning">{{$info->status}}</a></td>
                     <td><a class="btn btn-primary" href="{{'owner.clientEdit/'.$info->id}}"> Edit</a></td>
-                    <td><a class="btn btn-danger" href="{{'owner.delete_unactive/'.$info->id}}">Delete</a></td>
+                    <td><a class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this client ?')" href="{{'owner.delete_unactive/'.$info->id}}">Delete</i></a></td>
                   </tr>
                   @endforeach
 

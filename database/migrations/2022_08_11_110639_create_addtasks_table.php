@@ -23,6 +23,7 @@ class CreateAddtasksTable extends Migration
             $table->text('BusinessType');
             $table->text('extraservices');
             $table->integer('AdminId');
+            $table->text('questionnaire');
             $table->text('status')->default('unassigned');
             $table->timestamps();
         });

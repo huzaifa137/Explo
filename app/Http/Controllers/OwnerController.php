@@ -29,8 +29,39 @@ class OwnerController extends Controller
 
     public function ownerdashboard()
     {
+        
         $data=['Loggedowner'=>owner::where('id','=',session('Loggedowner'))->first()];
-        return view('ownerdashboard',$data);
+        
+        $word = addtask::all();
+        $AllTasks = $word->count();
+        
+        $word1 = addtask::where('status','=','completed');
+        $completedTask = $word1->count();
+        
+
+        $word2=addtask::where('status','=','assigned');
+        $assigned_Task=$word2->count();
+
+        $not_active=agentregister::where('status','=','invalid');
+        $not_validate =$not_active->count();
+
+        $not_active_client=Admin::where('status','=','invalid');
+        $not_valid_client =$not_active_client->count();
+
+        $all_admin=Admin::all();
+        $all_clients=$all_admin->count();
+
+        $all_agents=agentregister::all();
+        $all_agents_details=$all_agents->count();
+
+        return view('ownerdashboard',$data)
+                                    ->with('AllTasks',$AllTasks)
+                                    ->with('completedTask',$completedTask)
+                                    ->with('assigned_Task',$assigned_Task)
+                                    ->with('not_valid_client',$not_valid_client)
+                                    ->with('all_clients',$all_clients) 
+                                    ->with('all_agents_details',$all_agents_details) 
+                                    ->with('not_validate',$not_validate);
     }
 
     public function clients_info() 
@@ -82,7 +113,7 @@ class OwnerController extends Controller
          return Redirect()->route('Admin.AgentDashboard');
     }   
 
-    public function TaskEdit($id)
+    public function ownerTaskEdit($id)
     {
         $save = addtask::find($id);
         $data=['Loggedowner'=>owner::where('id','=',session('Loggedowner'))->first()];
@@ -135,12 +166,13 @@ class OwnerController extends Controller
 
     //Owner dashboard ----> Agent Table
 
-    public function agent_assigned_details($id)
+    public function agent_assigned_records($id)
     {
         $data=['Loggedowner'=>owner::where('id','=',session('Loggedowner'))->first()];
         $Task_info = assignedTask::find($id);
 
-         return view('owner.agent_assigned_details',$data)->with('Task_info',$Task_info);
+        // dd($Task_info);
+         return view('owner.agent_assigned_records',$data)->with('Task_info',$Task_info);
     }
 
 
@@ -385,8 +417,18 @@ class OwnerController extends Controller
             'status'=>'assigned'
         ])->get();
 
+        $info_data_complete=assignedTask::where([
+            'AgentId'=> $info,
+            'status'=>'assigned'
+        ])->get();
 
-        return view('Owner.AllTasks',$data)->with('info_data',$info_data);
+        $assigned_task =$info_data->count();
+        $completed_task =$info_data_complete->count();
+
+        return view('Owner.AllTasks',$data)
+                                ->with('info_data',$info_data)
+                                ->with('assigned_task',$assigned_task)
+                                ->with('completed_task',$completed_task);
     }
 
 
@@ -421,11 +463,6 @@ class OwnerController extends Controller
         return view('Owner.assignedTasks',$data)->with('info_data',$info_data);
     }
 
-    // public function view_assigned_tasks($id)
-    // {
-    //     return assignedTask::find($id);
-    // }
-
     public function Task_assigned(Request $request)
     {
         $request->validate([
@@ -441,6 +478,7 @@ class OwnerController extends Controller
         $taskname = DB::select('select name from addtasks where id = ?',[$request->task_name]);
         $taskid = DB::select('select id from addtasks where id = ?',[$request->task_name]);
         $Agentname = DB::select('select id from agentregisters where id = ?',[$request->agent_name]);
+        $assign_question = DB::select('select questionnaire from addtasks where id = ?',[$request->task_name]);
 
         foreach ($taskid as $keys) {
             $task_id=$keys->id;
@@ -465,6 +503,11 @@ class OwnerController extends Controller
         foreach ($taskname as $key ) {
             $infotaskname=$key->name;
         }
+
+        foreach ($assign_question as $demo) {
+            $quest=$demo->questionnaire;
+        }
+        
         $assign = new assignedTask();
 
         $assign->AgentName = $infoname;
@@ -475,6 +518,7 @@ class OwnerController extends Controller
         $assign->Submission_date = $request->input('submission_date');
         $assign->AgentId=$Agentid;
         $assign->TaskId=$task_id;
+        $assign->questionnaire=$quest;
         $save = $assign->save();
         
         $this->updateTasksTable($request);

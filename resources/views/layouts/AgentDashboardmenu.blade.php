@@ -6,20 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title> Explo Dashboard</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="assets2/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="assets2/vendors/flag-icon-css/css/flag-icon.min.css">
-    <link rel="stylesheet" href="assets2/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="/assets2/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/assets2/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="/assets2/vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="assets2/vendors/font-awesome/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="assets2/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="/assets2/vendors/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/assets2/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
-    <link rel="stylesheet" href="assets2/css/style.css">
+    <link rel="stylesheet" href="/assets2/css/style.css">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="assets2/images/favicon.png" />
+    <link rel="shortcut icon" href="/assets2/images/favicon.png" />
   </head>
   <body>
 
@@ -27,8 +27,8 @@
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
           <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo" href="Admin.AgentDashboard"><img src="assets2/images/logo.svg" alt="logo" /></a>
-            <a class="navbar-brand brand-logo-mini" href="Admin.AgentDashboard"><img src="assets2/images/logo-mini.svg" alt="logo" /></a>
+            <a class="navbar-brand brand-logo" href="Admin.AgentDashboard"><img src="/assets2/images/logo.svg" alt="logo" /></a>
+            <a class="navbar-brand brand-logo-mini" href="Admin.AgentDashboard"><img src="/assets2/images/logo-mini.svg" alt="logo" /></a>
           </div>
           <div class="navbar-menu-wrapper d-flex align-items-stretch">
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -45,7 +45,7 @@
               </form>
             </div>
             <ul class="navbar-nav navbar-nav-right">
-              <li class="nav-item  dropdown d-none d-md-block">
+              {{-- <li class="nav-item  dropdown d-none d-md-block">
                 <a class="nav-link dropdown-toggle" id="reportDropdown" href="#" data-toggle="dropdown" aria-expanded="false"> Reports </a>
                 <div class="dropdown-menu navbar-dropdown" aria-labelledby="reportDropdown">
                   <a class="dropdown-item" href="#">
@@ -57,7 +57,7 @@
                   <a class="dropdown-item" href="#">
                     <i class="mdi mdi-file-word mr-2"></i>doc </a>
                 </div>
-              </li>
+              </li> --}}
              
               <li class="nav-item nav-profile dropdown">
                 <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
@@ -74,7 +74,7 @@
                   </div>
                   <div class="p-2">
                     <h5 class="dropdown-header text-uppercase pl-2 text-dark">Agent Options</h5>
-                    <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="auth.agent-logout">
+                    <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="{{route('auth.agent-logout')}}">
                       <span>Log Out</span>
                       <i class="mdi mdi-logout ml-1"></i>
                     </a>
@@ -132,19 +132,19 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="assets2/vendors/js/vendor.bundle.base.js"></script>
+    <script src="/assets2/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
-    <script src="assets2/vendors/chart.js/Chart.min.js"></script>
-    <script src="assets2/vendors/jquery-circle-progress/js/circle-progress.min.js"></script>
+    <script src="/assets2/vendors/chart.js/Chart.min.js"></script>
+    <script src="/assets2/vendors/jquery-circle-progress/js/circle-progress.min.js"></script>
     <!-- End plugin js for this page -->
     <!-- inject:js -->
-    <script src="assets2/js/off-canvas.js"></script>
-    <script src="assets2/js/hoverable-collapse.js"></script>
-    <script src="assets2/js/misc.js"></script>
+    <script src="/assets2/js/off-canvas.js"></script>
+    <script src="/assets2/js/hoverable-collapse.js"></script>
+    <script src="/assets2/js/misc.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
-    <script src="assets2/js/dashboard.js"></script>
+    <script src="/assets2/js/dashboard.js"></script>
     <!-- End custom js for this page -->
 </body>
 </html>
