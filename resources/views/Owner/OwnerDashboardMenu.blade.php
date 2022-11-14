@@ -131,6 +131,7 @@
                     <li class="nav-item"> <a class="nav-link" href="{{route('owner.agent-info')}}">Agents</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{route('owner.task-info')}}">All Tasks</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{route('owner-assigned-tasks')}}">Assigned Tasks</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{route('owner-SubmittedTasks')}}">Submitted Tasks</a></li>
                   </ul>
                 </div>
               </li>

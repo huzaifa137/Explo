@@ -23,14 +23,18 @@ class MainController extends Controller
 
     public function authsave(Request $request)
     {
+        
+        $Admin = new Admin();
+        
         $request->validate([
             'fname'=>'required',
-            'email'=>'required|unique:Admins',
+            'email'=>'required|unique:admins',
             'phonenumber'=>'required|min:10|max:10',
             'password'=>'required|min:5|max:12',
             'confirm_password'=>'required|min:5|max:12'
         ]);
-
+    
+    
         $password1=$request->input('password');
         $password2=$request->input('confirm_password');
 
@@ -38,7 +42,7 @@ class MainController extends Controller
         {
             return back()->with('fail','Password entered dont much');
         }
-        $Admin = new Admin();
+        
         $Admin->name = $request->input('fname');
         $Admin->email = $request->input('email');
         $Admin->phonenumber = $request->input('phonenumber');
@@ -192,7 +196,7 @@ class MainController extends Controller
 
         public function editTask($id)
         {
-            $save = addtask::find($id);
+             $save = addtask::find($id);
             $data=['LoggedUser'=>Admin::where('id','=',session('LoggedUser'))->first()];
             return view('Admin.edit_information',$data)->with('save',$save);
         }

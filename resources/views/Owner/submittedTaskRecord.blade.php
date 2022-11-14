@@ -3,9 +3,8 @@
 <div class="main-panel">
     <div class="content-wrapper">
       <div class="page-header">
-        <h3 class="page-title"> Assigned Tasks Details :</h3>
+        <h3 class="page-title"> Submitted Task Details :</h3>
       </div>
-
       <script>
           var $msg='{{Session::get('Deleted')}}';
           var $comp ='{{Session::has('Deleted')}}';
@@ -25,19 +24,11 @@
             <td> <span style="font-weight:bold">AgentName</span>     :  {{$Task_info->AgentName}} </td>
             <td><span style="font-weight:bold">TaskName</span>     :  {{$Task_info->TaskName}} </td>
           </tr>
-            <tr>
-                <td><span style="font-weight:bold">Status</span>              :  {{$Task_info->status}} </td>
-             <td><span style="font-weight:bold">District</span>    :  {{$Task_info->district}} </td>
-          </tr>
-            <tr>
-              <td><span style="font-weight:bold">Start date</span>    :  {{$Task_info->startdate}} </td>
-              <td><span style="font-weight:bold">Submission date</span>     :  {{$Task_info->Submission_date}} </td>
-          </tr>
           </thead>
         </table>
-        <br> 
+        <br>  
         <tr>
-          <span style="font-weight:bold;color:black;">questionnaire</span>  <span style="color: black;"> :  {{$Task_info->questionnaire}}</span>
+            <td><span style="font-weight:bold;color:black;"> Details</span>  <span style="color: black;"> :  {{$Task_info->Details}}</span></td>
         </tr>  
       </div>
     </div>

@@ -8,6 +8,8 @@ use App\Models\Admin;
 use App\Models\assignedTask;
 use App\Models\addtask;
 use App\Models\agentregister;
+use App\Models\submitted_result;
+
 use Illuminate\Support\Facades\DB;
 
 class OwnerController extends Controller
@@ -84,7 +86,7 @@ class OwnerController extends Controller
         $data=['Loggedowner'=>owner::where('id','=',session('Loggedowner'))->first()];
         $info_data= addtask::all();
 
-        return view('owner.ownertasks',$data)->with('info_data',$info_data);
+        return view('Owner.ownertasks',$data)->with('info_data',$info_data);
     }
 
     //Owner dashboard ----> Tasks Table
@@ -94,31 +96,16 @@ class OwnerController extends Controller
         $data=['Loggedowner'=>owner::where('id','=',session('Loggedowner'))->first()];
         $Task_info = addtask::find($id);
 
-        return view('owner.TaskInfo',$data)->with('Task_info',$Task_info);
+        return view('Owner.TaskInfo',$data)->with('Task_info',$Task_info);
     }
 
-    public function submitTask($id)
-    {
-        $info_data = assignedTask::find($id);
-
-         $updates = DB::select('select TaskId from assigned_tasks where TaskId = ?',[$info_data->TaskId]);
-
-         foreach ($updates as $key) {
-            $data=$key->TaskId;
-         }
-
-         $save=addtask::where('id',$data)->update(['status'=>'completed']);
-         $save1=assignedTask::where('Taskid',$data)->update(['status'=>'completed']);
-         
-         return Redirect()->route('Admin.AgentDashboard');
-    }   
 
     public function ownerTaskEdit($id)
     {
         $save = addtask::find($id);
         $data=['Loggedowner'=>owner::where('id','=',session('Loggedowner'))->first()];
 
-        return view('owner.ownerTaskEdit',$data)->with('save',$save);
+        return view('Owner.ownerTaskEdit',$data)->with('save',$save);
     }
 
     public function updateTask(Request $request)
@@ -171,8 +158,8 @@ class OwnerController extends Controller
         $data=['Loggedowner'=>owner::where('id','=',session('Loggedowner'))->first()];
         $Task_info = assignedTask::find($id);
 
-        // dd($Task_info);
-         return view('owner.agent_assigned_records',$data)->with('Task_info',$Task_info);
+        
+         return view('Owner.agent_assigned_records',$data)->with('Task_info',$Task_info);
     }
 
 
@@ -188,7 +175,7 @@ class OwnerController extends Controller
     {
         $save=agentregister::find($id);
         
-        return view('owner.ownerAgentEdit')->with('save',$save);
+        return view('Owner.ownerAgentEdit')->with('save',$save);
     }
 
     public function auth_owner_save(Request $request)
@@ -279,7 +266,7 @@ class OwnerController extends Controller
         $data=['Loggedowner'=>owner::where('id','=',session('Loggedowner'))->first()];
         $info = DB::select('select * from admins where status = ? ',['invalid']);
 
-        return view('owner.clientnotactivated',$data)->with('infodata',$info);
+        return view('Owner.clientnotactivated',$data)->with('infodata',$info);
     }
 
     public function delete_unactive($id)
@@ -295,7 +282,7 @@ class OwnerController extends Controller
      
         $data=['Loggedowner'=>owner::where('id','=',session('Loggedowner'))->first()];
         $infodata = DB::select('select * from agentregisters where status = ?',['invalid']);
-        return view('owner.agentnotactivated',$data)->with('infodata',$infodata);
+        return view('Owner.agentnotactivated',$data)->with('infodata',$infodata);
     }
 
     // Creating a new owner in database
@@ -533,6 +520,22 @@ class OwnerController extends Controller
             return redirect()->back()->with('fail','Task has not been assigned !!!');
     
         }
+    }
 
+    public function submittedRecords()
+    {   
+        $data=['Loggedowner'=>owner::where('id','=',session('Loggedowner'))->first()];
+        $info_data=DB::table('submitted_results')->get();
+
+        return view('Owner.submittedTasks',$data)->with('info_data',$info_data);
+    }
+
+    public function agent_submitted_records($id)
+    {
+        $data=['Loggedowner'=>owner::where('id','=',session('Loggedowner'))->first()];
+        $Task_info = submitted_result::find($id);
+
+        
+         return view('Owner.submittedTaskRecord',$data)->with('Task_info',$Task_info);
     }
 }

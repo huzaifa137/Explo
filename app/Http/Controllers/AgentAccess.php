@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\agentregister;
 use Illuminate\Support\Facades\DB;
 use App\Models\assignedTask;
+use App\Models\submitted_result;
+use Illuminate\Support\Str;
+use App\Models\addtask;
 
 class AgentAccess extends Controller
 {
@@ -179,7 +182,7 @@ class AgentAccess extends Controller
         $data=['LoggedUser1'=>agentregister::where('id','=',session('LoggedUser1'))->first()];
         $Task_info = assignedTask::find($id);
         
-         return view('owner.agent_assigned_details',$data)->with('Task_info',$Task_info);
+         return view('Owner.agent_assigned_details',$data)->with('Task_info',$Task_info);
     }
 
     public function Agentinformation()
@@ -192,4 +195,65 @@ class AgentAccess extends Controller
         $infodata=DB::select('select * from agent_assigned_tasks');
         return view('Admin.Agentinformation',$data)->with('infodata',$infodata);
     }
+
+    public function submitTask($id)
+    {
+        $info_data = assignedTask::find($id);
+         
+         return view('Result_Information',compact('info_data',$info_data));
+    }   
+
+
+        public function SubmitResults(Request $request)
+        {
+             $info = new submitted_result();
+
+            $UpdateAssigned=$request->AgentIdHidden;
+
+            $info->TaskName= $request->TaskName;
+            $info->AgentName= $request->AgentName;
+            $request->survey_options;
+            $data= collect($request->survey_options)->implode(',');
+            $info->Details= $data;
+            $saved = $info->save();
+
+            
+          $updates = DB::select('select TaskId from assigned_tasks where TaskId = ?',[$UpdateAssigned]);
+
+         foreach ($updates as $key) {
+              $data=$key->TaskId;
+         }
+         $save=addtask::where('id',$data)->update(['status'=>'completed']);
+         $save1=assignedTask::where('Taskid',$data)->update(['status'=>'completed']);
+            
+
+         return Redirect()->route('Admin.AgentDashboard');
+        }
+
+        public function ResultsData()
+        {
+            return view('Result_Information');
+        }
+
+        public function DisplaySubmittedRecords()
+        {
+            $submittedInfo = DB::table('submitted_results')->get();
+            return view('testpage',compact('submittedInfo',$submittedInfo));
+        }
+      
+        public function showId($id)
+        {
+            $data= submitted_result::find($id);
+            $detail= $data->Details;
+
+            $final = Str::replace(',',' ',$detail);
+            $result = preg_split('/\s+/', $final, -1, PREG_SPLIT_NO_EMPTY);
+            
+
+            foreach ($result as $key => $value) {
+               echo $key .'=>'. $value;
+
+               echo '<br>';
+            }
+        }
 }
